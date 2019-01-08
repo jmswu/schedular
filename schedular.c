@@ -1,6 +1,5 @@
 #include "schedular.h"
 #include <stdio.h>
-#include "systicks.h"
 
 // an task array to store all the task, and their params
 // and the task schedular will read this list the run
