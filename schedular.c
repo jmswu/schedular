@@ -16,7 +16,7 @@ void schedular_init(get_ticks_t get_ticks) {
     if (get_ticks != 0) schedular.get_ticks = get_ticks;
 }
 
-void schedular_add(func_t task, uint32_t interval) {
+void schedular_add(sch_task_t task, uint32_t interval) {
     // find an empty task
     uint16_t i;
     for (i = 0; i < TASK_SIZE; i++) {
@@ -31,7 +31,7 @@ void schedular_add(func_t task, uint32_t interval) {
     }
 }
 
-void schedular_remove(func_t task) {
+void schedular_remove(sch_task_t task) {
     // find the task
     uint16_t i;
     for (i = 0; i < TASK_SIZE; i++) {

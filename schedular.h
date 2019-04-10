@@ -18,7 +18,7 @@ extern "C" {
 #define TASK_SIZE     (10U)
 
     // function pointer use in task
-    typedef uint16_t (*func_t)(void);
+    typedef uint8_t (*sch_task_t)(void);
     typedef uint32_t(*get_ticks_t)(void);
 
     // task struct for use in schedular
@@ -26,7 +26,7 @@ extern "C" {
     typedef struct {
         uint32_t ticks_interval; // task interval, 
         uint32_t ticks_previous; // previous ticks
-        func_t task; // function pointer
+        sch_task_t task; // function pointer
     } task_t;
 
     typedef struct {
@@ -51,11 +51,11 @@ extern "C" {
     // add a task to the schedular
     // @param task      - the task to add
     // @param interval  - how often the task need to run 
-    void schedular_add(func_t task, uint32_t interval);
+    void schedular_add(sch_task_t task, uint32_t interval);
 
     // remove a task from the schedular
     // @param task      - the task to be removed
-    void schedular_remove(func_t task);
+    void schedular_remove(sch_task_t task);
 
     // this run the schedular, this should be in the main loop
     void schedular_run(void);
@@ -71,4 +71,3 @@ extern "C" {
 #endif
 
 #endif	/* SCHEDULAR_H */
-
