@@ -79,3 +79,7 @@ void schedular_print_task(void) {
 uint16_t schedular_get_free_task(void) {
     return TASK_SIZE - schedular.task_count;
 }
+
+void schedular_sort(void){
+    // to-do: sort the task list from small interval to big interval
+}
