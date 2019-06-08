@@ -68,6 +68,7 @@ extern "C" {
     
     // to-do: to be implement
     // sort the task list from small interval to big interval
+    // this will increase the response for all the tasks
     void schedular_sort(void);
 
 
