@@ -60,9 +60,15 @@ extern "C" {
     // this run the schedular, this should be in the main loop
     void schedular_run(void);
 
+    // print all the task in schedular, this is for debugging
     void schedular_print_task(void);
 
+    // get the number of free available taskS
     uint16_t schedular_get_free_task(void);
+    
+    // to-do: to be implement
+    // sort the task list from small interval to big interval
+    void schedular_sort(void);
 
 
 
