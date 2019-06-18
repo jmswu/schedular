@@ -8,6 +8,8 @@ Example userage:
  */
 uint32_t get_ticks(void);
 
+uint8_t task_1(void);
+uint8_t task_2(void);
 
 
 void main(){
