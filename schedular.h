@@ -1,4 +1,5 @@
-/* 
+
+/*
  * File:   schedular.h
  * Author: james
  *
@@ -24,20 +25,20 @@ extern "C" {
     // task struct for use in schedular
 
     typedef struct {
-        uint32_t ticks_interval; // task interval, 
+        uint32_t ticks_interval; // task interval,
         uint32_t ticks_previous; // previous ticks
         sch_task_t task; // function pointer
     } task_t;
 
     typedef struct {
         // will be point to external getTicks() function
-        get_ticks_t get_ticks; 
-        
+        get_ticks_t get_ticks;
+
         // an task array to store all the task, and their params
         // and the task schedular will read this list the run
         // task according their params
         task_t task_list[TASK_SIZE];
-        
+
         // the number of tasks
         uint16_t task_count;
     } schedular_t;
@@ -50,7 +51,7 @@ extern "C" {
 
     // add a task to the schedular
     // @param task      - the task to add
-    // @param interval  - how often the task need to run 
+    // @param interval  - how often the task need to run
     void schedular_add(sch_task_t task, uint32_t interval);
 
     // remove a task from the schedular
@@ -65,10 +66,9 @@ extern "C" {
 
     // get the number of free available taskS
     uint16_t schedular_get_free_task(void);
-    
-    // to-do: to be implement
+
     // sort the task list from small interval to big interval
-    // this will increase the response for all the tasks
+    // this will reduce the response time for all the tasks
     void schedular_sort(void);
 
 

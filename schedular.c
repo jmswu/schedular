@@ -1,3 +1,4 @@
+
 #include "schedular.h"
 #include <stdio.h>
 
@@ -39,6 +40,8 @@ void schedular_remove(sch_task_t task) {
         // remove the task from the list
         if (schedular.task_list[i].task == task) {
             schedular.task_list[i].task = 0;
+            schedular.task_list[i].ticks_interval = 0;
+            schedular.task_list[i].ticks_previous = 0;
             schedular.task_count--;
             return;
         }
@@ -80,6 +83,30 @@ uint16_t schedular_get_free_task(void) {
     return TASK_SIZE - schedular.task_count;
 }
 
+void schedular_task_swap(task_t *task_a, task_t *task_b){
+    task_t tmp = *task_a;
+    *task_a = *task_b;
+    *task_b = tmp;
+}
+
 void schedular_sort(void){
-    // to-do: sort the task list from small interval to big interval
+    uint16_t i, j;
+    // sort the task list from small interval to big interval
+    for(i = 0; i < TASK_SIZE - 1; i++){
+        for(j = 0; j < TASK_SIZE - i - 1; j++){
+            if (schedular.task_list[j].ticks_interval > schedular.task_list[j + 1].ticks_interval){
+                schedular_task_swap(&(schedular.task_list[j]), &(schedular.task_list[j + 1]));
+            }
+        }
+    }
+
+    // shift task to the left for free_task position
+    for(i = 0; i < schedular_get_free_task(); i++){
+        for(j = 0; j < TASK_SIZE - 1; j++){
+            schedular.task_list[j] = schedular.task_list[j + 1];
+        }
+        schedular.task_list[TASK_SIZE - 1].task = 0;
+        schedular.task_list[TASK_SIZE - 1].ticks_interval = 0;
+        schedular.task_list[TASK_SIZE - 1].ticks_previous = 0;
+    }
 }
